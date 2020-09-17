@@ -10,7 +10,7 @@ import re
 def get_label2id(labels_path: str) -> Dict[str, int]:
     """id is 1 start"""
     with open(labels_path, 'r') as f:
-        labels_str = f.read().split()
+        labels_str = f.read().split('\n')
     labels_ids = list(range(1, len(labels_str)+1))
     return dict(zip(labels_str, labels_ids))
 
@@ -22,13 +22,13 @@ def get_annpaths(ann_dir_path: str = None,
     # If use annotation paths list
     if annpaths_list_path is not None:
         with open(annpaths_list_path, 'r') as f:
-            ann_paths = f.read().split()
+            ann_paths = f.read().split('\n')
         return ann_paths
 
     # If use annotaion ids list
     ext_with_dot = '.' + ext if ext != '' else ''
     with open(ann_ids_path, 'r') as f:
-        ann_ids = f.read().split()
+        ann_ids = f.read().split('\n')
     ann_paths = [os.path.join(ann_dir_path, aid+ext_with_dot) for aid in ann_ids]
     return ann_paths
 
