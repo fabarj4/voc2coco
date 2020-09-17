@@ -95,7 +95,7 @@ def convert_xmls_to_cocojson(annotation_paths: List[str],
     for a_path in tqdm(annotation_paths):
         # Read annotation xml
         ann_tree = ET.parse(a_path)
-        ann_root = ET.tostring(ann_tree.getroot())
+        ann_root = ann_tree.getroot()
 
         img_info = get_image_info(annotation_root=ann_root,
                                   extract_num_from_imgid=extract_num_from_imgid)
